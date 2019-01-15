@@ -6,17 +6,8 @@
     @close="closeModal">
     <div class="box">
       <div class="content">
-        <h3 class="title is-4">Connect to Mux</h3>
-        <p>To add your Mux API Access Tokens in the Extension. Follow these steps:</p>
-        <ol>
-          <li><a
-            href="https://mux.com"
-            target="_blank">Login to your Mux account</a></li>
-          <li>Go to Your Settings > API Access Tokens</li>
-          <li>Click Generate new Token, set your environment & permissions</li>
-          <li>Copy and paste your API Access Tokens (Application Token ID And Secret Key) into the Extension Query Parameters section located in Your Bucket > Settings > Extensions > Mux Extension > Settings.</li>
-          <li>Enjoy uploading videos!</li>
-        </ol>
+        <h3 class="title is-4">Learn More</h3>
+        <p>Want to learn more about optimizing your images using Imgix? <a href="https://www.imgix.com/" target="_blank">Visit their website</a> and <a href="https://docs.imgix.com/setup" target="_blank">browse the documentation</a>.</p>
       </div>
     </div>
   </b-modal>

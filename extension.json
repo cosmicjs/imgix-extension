@@ -1,7 +1,7 @@
 {
   "title": "Imgix Extension",
   "font_awesome_class": "fa-image",
-  "image_url": "https://cosmic-s3.imgix.net/ee0ef100-052b-11e9-a865-4d928f17b796-mux.png?w=600",
+  "image_url": "https://cosmic-s3.imgix.net/459e5b00-18f9-11e9-a4f7-733933d61ae1-imgix-presskit.png?w=600",
   "object_types": [{
     "title": "Imgix Images",
     "slug": "imgix-image",
