@@ -21,15 +21,6 @@
             {{ new Date(props.row.created_at).toLocaleDateString() }}
           </span>
         </b-table-column>
-        <b-table-column
-          field="metadata.optimized_image"
-          label="Optimized Image"
-          centered>
-          <b-icon
-            icon="content-copy"
-            class="copy-icon"
-            @click.native="handleCopy(props.row.metadata.optimized_image)"/>
-        </b-table-column>
       </template>
       <template
         slot="detail"
@@ -48,18 +39,6 @@
           <div class="media-content">
             <div class="content">
               <p>
-                <strong>Cosmic Slug:</strong>
-                <br>
-                <span>{{ props.row.slug }}</span>
-                <span>
-                  <b-icon
-                    size="is-small"
-                    icon="open-in-new"
-                    class="copy-icon pad"
-                    @click.native="openWindow(props.row._id)" />
-                </span>
-                <br>
-                <br>
                 <strong>Master Image:</strong>
                 <br>
                 <span>{{ props.row.metadata.master_image }}</span>
@@ -72,16 +51,37 @@
                 </span>
                 <br>
                 <br>
-                <strong>Optimized Image:</strong>
+                <strong>Optimized Images:</strong>
+                <b-table
+                  v-if="props.row.metadata.optimized_images && props.row.metadata.optimized_images.length > 0"
+                  :data="props.row.metadata.optimized_images">
+                  <template
+                    slot-scope="props">
+                    <b-table-column
+                      field="name"
+                      label="Name">
+                      {{ props.row.name }}
+                    </b-table-column>
+                    <b-table-column
+                      field="url"
+                      label="URL">
+                      {{ props.row.url }}
+                    </b-table-column>
+                    <b-table-column
+                      field="url"
+                      label="Action"
+                      centered>
+                      <b-icon
+                        icon="content-copy"
+                        class="copy-icon"
+                        @click.native="handleCopy(props.row.url)"/>
+                    </b-table-column>
+                  </template>
+                </b-table>
                 <br>
-                <span>{{ props.row.metadata.optimized_image }}</span>
-                <span>
-                  <b-icon
-                    size="is-small"
-                    icon="content-copy"
-                    class="copy-icon pad"
-                    @click.native="handleCopy(props.row.metadata.optimized_image)" />
-                </span>
+                <button
+                  class="button is-info"
+                  @click="addImage(props)">Add Image</button>
               </p>
             </div>
           </div>
@@ -121,6 +121,19 @@ export default {
     },
     openWindow(id) {
       window.open(`https://cosmicjs.com/${this.$store.state.settings.cosmic.slug}/edit-object/${id}`);
+    },
+    async addImage(payload) {
+      const image = payload.row;
+      const {data: info} = await axios.get(`${image.metadata.master_image}?faces=1&fm=json`);
+      this.$store.commit('OPEN_IMAGE_EDITOR', {
+        editIndex: payload.index,
+        isEdit: true,
+        media: {
+          imgix_url: image.metadata.master_image,
+          original_name: image.metadata.original_name
+        },
+        info
+      });
     }
   }
 };

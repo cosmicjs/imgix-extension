@@ -11,9 +11,6 @@ const mutations = {
   ADD_IMAGE: (state, image) => {
     state.images.unshift(image);
   },
-  SET_PROGRESS: (state, payload) => {
-    state.progress = payload
-  },
   SET_LOADING: (state, payload) => {
     state.loading = payload
   },
@@ -21,6 +18,21 @@ const mutations = {
     state.modal = {
       help: payload
     }
+  },
+  OPEN_IMAGE_EDITOR: (state, payload) => {
+    state.editorModal = {
+      open: true,
+      ...payload
+    }
+  },
+  CLOSE_IMAGE_EDITOR: (state) => {
+    state.editorModal = {
+      ...state.editorModal,
+      open: false
+    }
+  },
+  EDIT_IMAGE_OBJECT: (state, payload) => {
+    state.images[payload.id].metadata.optimized_images.unshift(payload.optimized_image);
   }
 }
 

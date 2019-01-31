@@ -13,7 +13,46 @@ const state = {
     }
   },
   modal: {
-    help: false
+    help: false,
+  },
+  editorModal: {
+    open: false,
+    editIndex: -1,
+    isEdit: false,
+    media: null,
+    info: null,
+  },
+  editorSettings: {
+    auto: [
+      'compress',
+      'enhance',
+      'format',
+      'redeye'
+    ],
+    fit: [
+      'clamp',
+      'clip',
+      'crop',
+      'facearea',
+      'fill',
+      'fillmax',
+      'max',
+      'min',
+      'scale'
+    ],
+    crop: [
+      'top',
+      'bottom',
+      'left',
+      'right',
+      'faces',
+      'edges',
+      'entropy'
+    ],
+    mask: [
+      'ellipse',
+      'corners'
+    ]
   }
 }
 
