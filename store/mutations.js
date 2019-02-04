@@ -32,7 +32,7 @@ const mutations = {
     }
   },
   EDIT_IMAGE_OBJECT: (state, payload) => {
-    state.images[payload.id].metadata.optimized_images.unshift(payload.optimized_image);
+    state.images[payload.id] = payload.image;
   }
 }
 

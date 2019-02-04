@@ -53,19 +53,19 @@
                 <br>
                 <strong>Optimized Images:</strong>
                 <b-table
-                  v-if="props.row.metadata.optimized_images && props.row.metadata.optimized_images.length > 0"
-                  :data="props.row.metadata.optimized_images">
+                  v-if="optimizedImagesLength(props.row.metadata.optimized_images) > 0"
+                  :data="optimizedImagesArray(props.row.metadata.optimized_images)">
                   <template
                     slot-scope="props">
                     <b-table-column
-                      field="name"
-                      label="Name">
-                      {{ props.row.name }}
+                      field="key"
+                      label="Key">
+                      {{ props.row.key }}
                     </b-table-column>
                     <b-table-column
                       field="url"
                       label="URL">
-                      {{ props.row.url }}
+                      {{ props.row.value }}
                     </b-table-column>
                     <b-table-column
                       field="url"
@@ -74,7 +74,7 @@
                       <b-icon
                         icon="content-copy"
                         class="copy-icon"
-                        @click.native="handleCopy(props.row.url)"/>
+                        @click.native="handleCopy(props.row.value)"/>
                     </b-table-column>
                   </template>
                 </b-table>
@@ -133,6 +133,17 @@ export default {
           original_name: image.metadata.original_name
         },
         info
+      });
+    },
+    optimizedImagesLength(images) {
+      if (images) {
+        return Object.keys(images).length;
+      }
+      return 0;
+    },
+    optimizedImagesArray(images) {
+      return Object.keys(images).map((key) => {
+        return { key, value: images[key] };
       });
     }
   }
