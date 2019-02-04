@@ -17,6 +17,7 @@
     "@nuxtjs/axios": "^5.0.0",
     "cosmicjs": "^3.2.14",
     "cross-env": "^5.2.0",
+    "lodash.snakecase": "^4.1.1",
     "nuxt": "^2.0.0",
     "nuxt-buefy": "^0.2.1",
     "v-clipboard": "^2.2.1",

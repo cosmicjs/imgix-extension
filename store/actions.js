@@ -1,4 +1,5 @@
 import cosmicjs from 'cosmicjs'
+import snakeCase from 'lodash.snakecase';
 const Cosmic = cosmicjs();
 
 const actions = {
@@ -21,6 +22,8 @@ const actions = {
     const bucket = Cosmic.bucket(state.settings.cosmic);
     try {
       const media = state.editorModal.media;
+      const imgixName = `${payload.name || media.original_name}`;
+      const imgixValue = `${media.imgix_url}?${payload.params}`;
       const { object: image } = await bucket.addObject({
         type_slug: 'imgix-image',
         title: media.original_name,
@@ -46,37 +49,15 @@ const actions = {
           },
           {
             name: 'Optimized Images',
+            title: 'Optimized Images',
             key: 'optimized_images',
-            type: 'repeater',
-            "repeater_fields": [
-              {
-                title: 'Name',
-                key: 'name',
-                type: 'text',
-              },
-              {
-                title: 'URL',
-                key: 'url',
-                type: 'text',
-              }
-            ],
+            type: 'parent',
             children: [
               {
-                type: 'repeating_item',
-                children: [
-                  {
-                    title: 'Name',
-                    key: 'name',
-                    value: `${payload.name || media.original_name}`,
-                    type: 'text',
-                  },
-                  {
-                    title: 'URL',
-                    key: 'url',
-                    value: `${media.imgix_url}?${payload.params}`,
-                    type: 'text',
-                  },
-                ]
+                title: snakeCase(imgixName),
+                key: snakeCase(imgixName),
+                value: imgixValue,
+                type: 'text',
               }
             ]
           }
@@ -92,42 +73,21 @@ const actions = {
     try {
       const media = state.editorModal.media;
       const editImage = state.images[state.editorModal.editIndex];
-      const optimized_images = [];
-      editImage.metadata.optimized_images.forEach(element => {
-        optimized_images.push({
-          type: 'repeating_item',
-          children: [
-            {
-              title: 'Name',
-              key: 'name',
-              value: element.name,
-              type: 'text',
-            },
-            {
-              title: 'URL',
-              key: 'url',
-              value: element.url,
-              type: 'text',
-            },
-          ]
-        })
+      const imgixName = `${payload.name || media.original_name}`;
+      const imgixValue = `${media.imgix_url}?${payload.params}`;
+      const optimized_images = Object.keys(editImage.metadata.optimized_images).map(key => {
+        return {
+          title: key,
+          key,
+          value: editImage.metadata.optimized_images[key],
+          type: 'text',
+        };
       });
       optimized_images.unshift({
-        type: 'repeating_item',
-        children: [
-          {
-            title: 'Name',
-            key: 'name',
-            value: `${payload.name || media.original_name}`,
-            type: 'text',
-          },
-          {
-            title: 'URL',
-            key: 'url',
-            value: `${media.imgix_url}?${payload.params}`,
-            type: 'text',
-          },
-        ]
+        title: snakeCase(imgixName),
+        key: snakeCase(imgixName),
+        value: imgixValue,
+        type: 'text',
       });
 
       const editObject = {
@@ -149,21 +109,10 @@ const actions = {
             value: editImage.metadata.master_image
           },
           {
+            title: 'Optimized Images',
             name: 'Optimized Images',
             key: 'optimized_images',
-            type: 'repeater',
-            "repeater_fields": [
-              {
-                title: 'Name',
-                key: 'name',
-                type: 'text',
-              },
-              {
-                title: 'URL',
-                key: 'url',
-                type: 'text',
-              }
-            ],
+            type: 'parent',
             children: optimized_images
           }
         ],
@@ -173,10 +122,7 @@ const actions = {
 
       commit('EDIT_IMAGE_OBJECT', {
         id: state.editorModal.editIndex,
-        optimized_image: {
-          name: `${payload.name || media.original_name}`,
-          url: `${media.imgix_url}?${payload.params}`,
-        }
+        image
       });
       commit('CLOSE_IMAGE_EDITOR');
 
