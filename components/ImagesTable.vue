@@ -2,10 +2,12 @@
   <div class="images-container">
     <b-table
       v-if="images && images.length > 0"
+      ref="imgixTable"
       :data="images"
       :opened-detailed="firstIndex"
       detailed
-      detail-key="_id">
+      detail-key="_id"
+      @click="toggleDetails">
       <template
         slot-scope="props">
         <b-table-column
@@ -145,6 +147,9 @@ export default {
       return Object.keys(images).map((key) => {
         return { key, value: images[key] };
       });
+    },
+    toggleDetails(payload) {
+      this.$refs.imgixTable.toggleDetails(payload);
     }
   }
 };
