@@ -17,9 +17,17 @@
           <br>
           <b-field
             horizontal
-            label="Name">
+            label="Title">
             <b-input
               v-model="imageName"
+              type="text" />
+          </b-field>
+          <br>
+          <b-field
+            horizontal
+            label="Key">
+            <b-input
+              v-model="imageKey"
               type="text" />
           </b-field>
           <br>
@@ -42,7 +50,9 @@
                 <multiselect
                   v-model="editor.auto"
                   :multiple="true"
-                  :options="editorSettings.auto" />
+                  :options="editorSettings.auto"
+                  deselect-label=""
+                  select-label="" />
               </b-field>
             </div>
           </div>
@@ -79,7 +89,9 @@
                 label="Fit">
                 <multiselect
                   v-model="editor.fit"
-                  :options="editorSettings.fit" />
+                  :options="editorSettings.fit"
+                  deselect-label=""
+                  select-label="" />
               </b-field>
             </div>
             <div class="column is-half">
@@ -90,7 +102,9 @@
                 <multiselect
                   v-model="editor.crop"
                   :multiple="true"
-                  :options="editorSettings.crop" />
+                  :options="editorSettings.crop"
+                  deselect-label=""
+                  select-label="" />
               </b-field>
             </div>
           </div>
@@ -115,7 +129,9 @@
                 label="Mask">
                 <multiselect
                   v-model="editor.mask"
-                  :options="editorSettings.mask" />
+                  :options="editorSettings.mask"
+                  deselect-label=""
+                  select-label="" />
               </b-field>
             </div>
             <div class="column is-half">
@@ -143,6 +159,7 @@
 <script>
 import Multiselect from 'vue-multiselect';
 import vueSlider from 'vue-slider-component';
+import snakeCase from 'lodash.snakecase';
 
 export default {
   components: {
@@ -186,6 +203,9 @@ export default {
     },
     modalTitle() {
       return this.$store.state.editorModal.isEdit ? 'Add Optimized Image' : 'Edit Image';
+    },
+    imageKey() {
+      return snakeCase(this.imageName);
     },
     imageName: {
       set(value) {
