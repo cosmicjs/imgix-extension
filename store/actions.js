@@ -6,7 +6,7 @@ const actions = {
   FETCH_IMAGES: async ({ state, commit}) => {
     const bucket = Cosmic.bucket(state.settings.cosmic);
     const params = {
-      type: 'imgix-image',
+      type: 'imgix-images',
       sort: '-created_at'
     };
     try {
@@ -25,7 +25,7 @@ const actions = {
       const imgixName = `${payload.name || media.original_name}`;
       const imgixValue = `${media.imgix_url}?${payload.params}`;
       const { object: image } = await bucket.addObject({
-        type_slug: 'imgix-image',
+        type_slug: 'imgix-images',
         title: media.original_name,
         content: '',
         options: {
@@ -92,6 +92,9 @@ const actions = {
 
       const editObject = {
         slug: editImage.slug,
+        options: {
+          content_editor: false
+        },
         metafields: [
           {
             key: 'original_name',
@@ -124,6 +127,7 @@ const actions = {
         id: state.editorModal.editIndex,
         image
       });
+      window.location = window.location.href;
       commit('CLOSE_IMAGE_EDITOR');
 
     } catch(e) {
