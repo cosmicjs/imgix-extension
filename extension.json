@@ -1,5 +1,5 @@
 {
-  "title": "Imgix Extension",
+  "title": "Imgix Editor",
   "font_awesome_class": "fa-magic",
   "image_url": "https://cosmic-s3.imgix.net/459e5b00-18f9-11e9-a4f7-733933d61ae1-imgix-presskit.png?w=600",
   "object_types": [{
@@ -9,11 +9,6 @@
     "metafields": [{
         "title": "Master Image",
         "key": "master_image",
-        "type": "text",
-        "value": ""
-      },{
-        "title": "Optimized Image",
-        "key": "optimized_image",
         "type": "text",
         "value": ""
       }
