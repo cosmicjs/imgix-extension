@@ -13,9 +13,6 @@
     </div>
     <div class="columns">
       <div class="column is-12">
-        <div class="is-pulled-left">
-          <h3 class="title is-3">Images</h3>
-        </div>
         <div class="is-pulled-right">
           <button
             v-if="!ImagesEmpty"

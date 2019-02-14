@@ -156,9 +156,6 @@ export default {
 </script>
 
 <style scoped>
-.images-container {
-  margin-top: 30px;
-}
 .image.is-250 {
   width: 250px;
 }
