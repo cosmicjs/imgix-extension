@@ -2,7 +2,7 @@
 # Imgix Extension
 Cosmic JS Extension that integrates the [Imgix Image Platform](https://imgix.com) with your Bucket.
 
-[View Extension](https://cosmicjs.com/extensions/imgix-images)
+[View Extension](https://cosmicjs.com/extensions/imgix-editor)
 
 ## Install the Extension
 Follow these steps to install in your Cosmic JS Bucket:
