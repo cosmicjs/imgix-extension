@@ -3,7 +3,7 @@
     <nav class="navbar is-spaced">
       <div class="container">
         <div class="navbar-brand">
-          <h1 class="title is-2">Imgix Extension</h1>
+          <h1 class="title is-2">Imgix Editor</h1>
         </div>
         <div class="navbar-menu">
           <div class="navbar-end">
