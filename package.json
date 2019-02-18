@@ -1,7 +1,7 @@
 {
   "name": "cosmic-mux-extension",
   "version": "1.0.0",
-  "description": "Cosmic JS extension for Imgix.",
+  "description": "Cosmic JS extension for imgix.",
   "author": "Jazib Sawar",
   "private": true,
   "scripts": {

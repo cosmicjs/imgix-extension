@@ -1,11 +1,11 @@
 {
-  "title": "Imgix Editor",
+  "title": "imgix Editor",
   "font_awesome_class": "fa-magic",
   "image_url": "https://cosmic-s3.imgix.net/459e5b00-18f9-11e9-a4f7-733933d61ae1-imgix-presskit.png?w=600",
   "object_types": [{
-    "title": "Imgix Images",
+    "title": "imgix Images",
     "slug": "imgix-images",
-    "singular": "Imgix Image",
+    "singular": "imgix Image",
     "metafields": [{
         "title": "Master Image",
         "key": "master_image",
