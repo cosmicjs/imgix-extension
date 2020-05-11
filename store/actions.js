@@ -33,22 +33,24 @@ const actions = {
         },
         metafields: [
           {
+            title: 'Original Name',
             key: 'original_name',
             type: 'text',
             value: media.original_name
           },
           {
+            title: 'Master Image ID',
             key: 'master_image_id',
             type: 'text',
             value: media.bucket
           },
           {
+            title: 'Master Image',
             key: 'master_image',
             type: 'text',
             value: media.imgix_url
           },
           {
-            name: 'Optimized Images',
             title: 'Optimized Images',
             key: 'optimized_images',
             type: 'parent',
@@ -97,16 +99,19 @@ const actions = {
         },
         metafields: [
           {
+            title: 'Original Name',
             key: 'original_name',
             type: 'text',
             value: editImage.metadata.original_name
           },
           {
+            title: 'Master Image ID',
             key: 'master_image_id',
             type: 'text',
             value: editImage.metadata.master_image_id
           },
           {
+            title: 'Master Image',
             key: 'master_image',
             type: 'text',
             value: editImage.metadata.master_image
